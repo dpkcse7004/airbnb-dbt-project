@@ -1,0 +1,21 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Raw Airbnb source data loaded from CSV files."
+
+    database: AIRBNB
+    schema: RAW
+
+    loader: Snowflake Stage
+
+    tables:
+
+      - name: raw_bookings
+        description: "Raw booking transactions."
+
+      - name: raw_listings
+        description: "Raw property listings."
+
+      - name: raw_hosts
+        description: "Raw host information."

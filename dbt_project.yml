@@ -1,0 +1,90 @@
+# ==========================================================
+# Project Information
+# ==========================================================
+
+name: 'airbnb_project'
+version: '1.0.0'
+config-version: 2
+
+# Must match the profile name in ~/.dbt/profiles.yml
+profile: 'airbnb_project'
+
+# ==========================================================
+# Project Folder Paths
+# ==========================================================
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+# ==========================================================
+# Global Model Configuration
+# ==========================================================
+
+models:
+
+  airbnb_project:
+
+    # -------------------------
+    # STAGING LAYER
+    # -------------------------
+    staging:
+      +materialized: view
+      +schema: STAGING
+      +tags:
+        - staging
+
+    # -------------------------
+    # INTERMEDIATE LAYER
+    # -------------------------
+    intermediate:
+      +materialized: view
+      +schema: INTERMEDIATE
+      +tags:
+        - intermediate
+
+    # -------------------------
+    # MART LAYER
+    # -------------------------
+    marts:
+      +materialized: table
+      +schema: MARTS
+      +tags:
+        - marts
+
+# ==========================================================
+# Seed Configuration
+# ==========================================================
+
+seeds:
+
+  airbnb_project:
+
+    +schema: SEED_DATA
+
+    +quote_columns: false
+
+# ==========================================================
+# Snapshot Configuration
+# ==========================================================
+
+snapshots:
+
+  airbnb_project:
+
+    +target_schema: SNAPSHOTS
+
+
+
+
+# ==========================================================
+# End
+# ==========================================================
